@@ -61,7 +61,6 @@
         width: 200px;
         height: 200px;
 
-        background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker+(1).gif");
         background-size: cover;
         background-position: center;
         border-radius: 100px;
@@ -119,24 +118,11 @@
         }
       }
     </style>
-    <script>
-      function open_letter() {
-        document.getElementsByClassName("letter-close")[0].style.display =
-          "none";
-        document.getElementsByClassName("letter-open")[0].style.display =
-          "block";
-      }
-      function go_rtan() {
-        alert("앗, 어떻게 찾았지!");
-        window.location.href =
-          "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/iDz/image/y3pFBIgnTW_lWufDwO3dPRR78W4.jpg";
-      }
-    </script>
   </head>
 
   <body>
     <div class="letter-close">
-      <div class="envelope" onclick="open_letter()"></div>
+      <div class="envelope"></div>
       <h2 class="envelope-msg">봉투를 열어봐!</h2>
     </div>
 
@@ -146,11 +132,51 @@
       <div class="messagebox">
         2022년 연말이네. <br />
         올해 이런저런 일이 많았는데 <br />
-        멀지만 같은 하늘 아래 있다는 게 <br />
-        힘든 시기 큰 힘이 됐어 <br />
-        연말에 다 같이 못 봐서 아쉽다 <br />
-        <p class="from">2023년 건강하자</p>
+        너희 덕분에 하나도 힘들지 않았어 <br />
+        내년에도 우리 우정 변치 말자 <br />
+        <p class="from">from spring</p>
       </div>
     </div>
+    <audio
+      id="player"
+      src="https://cdn.pixabay.com/download/audio/2022/11/26/audio_0b5896798f.mp3"
+    ></audio>
+    <script>
+        /* 0 부터 number 까지의 정수형 난수 생성 */
+        function random(number) {
+          return Math.floor(Math.random() * (number + 1));
+        }
+        /* 배열에서 임의의 한 요소를 반환 */
+        function sample(array) {
+          let index = random(array.length - 1);
+          return array[index];
+        }
+        const rtan = document.querySelector('.rtan');
+        const images = [
+          "https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/rtan.gif",
+          "https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif",
+          "https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker+(1).gif",
+          "https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker+(2).gif",
+        ];
+        rtan.style.backgroundImage = `url("${sample(images)}")`;
+
+        const letterClose = document.querySelector(".letter-close");
+        const letterOpen = document.querySelector(".letter-open");
+        letterClose.onclick = () => {
+          document.getElementById("player").play();
+          letterClose.style.display = "none";
+          letterOpen.style.display = "block";
+        };
+        const links = [
+          "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/iDz/image/y3pFBIgnTW_lWufDwO3dPRR78W4.jpg",
+          "https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/iDz/image/_7kdJCI3Ctvc7y5uqad7MWG0jPA.jpeg",
+          "https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/iDz/image/LidccaKduXQf7QuhFLi9vFUDht0.jpg",
+          "https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/iDz/image/azVJBP6pZYX4bMMt3yIMDHMvl6A.jpg",
+        ];
+        function go_rtan() {
+          alert("앗, 어떻게 찾았지!");
+          window.location.href = sample(links);
+        }
+    </script>
   </body>
 </html>
